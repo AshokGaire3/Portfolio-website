@@ -15,11 +15,13 @@ const Hero: React.FC = () => {
         <div className="animate-fade-in-up">
           <div className="mb-8">
             <div className="relative inline-block">
+              {/*
               <img
-                src="public/IMG_8014.heif?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
+                src="/IMG_8014.png"
                 alt="Ashok Gaire"
-                className="w-40 h-40 rounded-full mx-auto mb-6 shadow-2xl animate-float border-4 border-white"
+                className="w-48 h-48 rounded-full mx-auto mb-6 shadow-2xl animate-float border-4 border-white object-cover object-center"
               />
+              */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 opacity-20 animate-pulse"></div>
             </div>
           </div>
