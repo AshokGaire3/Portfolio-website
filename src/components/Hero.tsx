@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-6 animate-fade-in-up animation-delay-1000">
             <a 
-              href="https://github.com/AshIVg" 
+              href="https://github.com/AshokGaire3" 
               target="_blank"
               rel="noopener noreferrer"
               className="group text-gray-500 hover:text-gray-700 transition-all duration-300 icon-hover-scale"
