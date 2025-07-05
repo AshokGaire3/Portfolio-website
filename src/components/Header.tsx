@@ -7,7 +7,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -22,62 +22,74 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100' 
+        ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100' 
         : 'bg-transparent'
     }`}>
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <div className={`text-2xl font-bold transition-all duration-300 ${
+          {/* Logo/Name - Ultra-refined */}
+          <div className={`text-xl font-semibold transition-all duration-300 ${
             isScrolled 
-              ? 'text-gray-800' 
-              : 'text-gray-800'
+              ? 'text-gray-900' 
+              : 'text-gray-900'
           }`}>
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Ashok Gaire
-            </span>
+            <span className="tracking-tight font-bold">Ashok Gaire</span>
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+          {/* Desktop Navigation - Streamlined and Elegant */}
+          <div className="hidden md:flex items-center space-x-10">
+            {['Home', 'About', 'Skills', 'Journey', 'Projects', 'Contact'].map((item, index) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className={`relative font-medium transition-all duration-300 group ${
+                className={`relative font-medium text-sm tracking-wide transition-all duration-300 group nav-link-refined ${
                   isScrolled 
                     ? 'text-gray-700 hover:text-blue-600' 
                     : 'text-gray-700 hover:text-blue-600'
-                }`}
+                } animate-fade-in-up stagger-${index + 1}`}
               >
                 {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300 ease-out rounded-full"></span>
               </button>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Refined */}
           <button
-            className={`md:hidden p-2 rounded-lg transition-all duration-300 ${
+            className={`md:hidden p-2 rounded-md transition-all duration-300 icon-hover-scale ${
               isScrolled 
-                ? 'text-gray-800 hover:bg-gray-100' 
-                : 'text-gray-800 hover:bg-white/20'
+                ? 'text-gray-900 hover:bg-gray-100' 
+                : 'text-gray-900 hover:bg-white/20'
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-5 h-5">
+              <Menu 
+                size={20} 
+                className={`absolute inset-0 transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
+                }`} 
+              />
+              <X 
+                size={20} 
+                className={`absolute inset-0 transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'
+                }`} 
+              />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Enhanced */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 bg-white/95 backdrop-blur-lg rounded-lg shadow-lg border border-gray-100 animate-slide-down">
-            {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+          <div className="md:hidden mt-4 pb-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-gray-100 animate-slide-down">
+            {['Home', 'About', 'Skills', 'Journey', 'Projects', 'Contact'].map((item, index) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className="block w-full text-left py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 rounded-lg mx-2 my-1"
+                className={`block w-full text-left py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 rounded-md mx-2 my-1 animate-fade-in-up stagger-${index + 1} font-medium`}
               >
                 {item}
               </button>
