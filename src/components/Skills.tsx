@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SectionEffects from './SectionEffects';
 
 const Skills: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,11 +62,12 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20 bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} id="skills" className="py-20 section-cosmic-alt relative overflow-hidden">
+      <SectionEffects sectionId="skills" effectType="skills" intensity="medium" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Skills & Expertise</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-cyan">Skills & Expertise</h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto font-light font-exo">
             Here are the technologies and tools I use to analyze data, build applications, and create AI/ML solutions.
           </p>
         </div>
@@ -74,10 +76,10 @@ const Skills: React.FC = () => {
           {skillCategories.map((category, categoryIndex) => (
             <div 
               key={category.title} 
-              className={`group bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 animate-slide-up border border-gray-100`}
+              className="group card-cosmic rounded-lg p-8 transition-all duration-300 transform hover:-translate-y-1 animate-slide-up"
               style={{ animationDelay: `${categoryIndex * 200}ms` }}
             >
-              <h3 className="text-lg font-bold text-gray-900 mb-6 text-center tracking-tight">
+              <h3 className="text-lg font-bold text-white mb-6 text-center tracking-tight font-orbitron">
                 {category.title}
               </h3>
               
@@ -85,16 +87,16 @@ const Skills: React.FC = () => {
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skill.name} className="group/skill">
                     <div className="flex justify-between mb-3">
-                      <span className="text-gray-700 font-medium text-sm group-hover/skill:text-gray-900 transition-colors duration-200">
+                      <span className="text-slate-300 font-medium text-sm group-hover/skill:text-white transition-colors duration-200 font-exo">
                         {skill.name}
                       </span>
-                      <span className="text-gray-500 text-sm font-medium">
+                      <span className="text-slate-400 text-sm font-medium font-exo">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <div className="skill-bar-cosmic h-3 rounded-full overflow-hidden">
                       <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="skill-progress-cosmic h-full rounded-full transition-all duration-1000 ease-out"
                         style={{ 
                           width: isVisible ? `${skill.level}%` : '0%',
                           transitionDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms`

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle } from 'lucide-react';
+import SectionEffects from './SectionEffects';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -40,65 +41,66 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white relative overflow-hidden">
+    <section id="contact" className="py-20 section-cosmic relative overflow-hidden">
+      <SectionEffects sectionId="contact" effectType="contact" intensity="medium" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Get In Touch</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up animation-delay-200 font-light">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-purple">Get In Touch</h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto animate-fade-in-up animation-delay-200 font-light font-exo">
             I'm always open to discussing new opportunities, collaborations, and interesting projects in data science and software development.
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
           <div className="animate-slide-in-left">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Let's Connect</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed font-light">
+            <h3 className="text-2xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-blue">Let's Connect</h3>
+            <p className="text-slate-300 mb-8 leading-relaxed font-light font-exo">
               Whether you have a data analysis project, need a full-stack application, or want to discuss 
               AI/ML solutions, I'd love to hear from you. Let's build something amazing together!
             </p>
             
             <div className="space-y-6">
-              <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 card-hover-subtle">
-                <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-all duration-300">
-                  <Mail className="text-blue-600" size={20} />
+              <div className="group flex items-center gap-4 p-4 rounded-lg card-cosmic">
+                <div className="glass-morphism p-3 rounded-lg group-hover:glow-blue transition-all duration-300">
+                  <Mail className="text-blue-400" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
-                  <a href="mailto:ashok.gaire39@gmail.com" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 animate-underline-expand font-light">
+                  <h4 className="font-semibold text-white font-exo">Email</h4>
+                  <a href="mailto:ashok.gaire39@gmail.com" className="text-slate-300 hover:text-blue-400 transition-colors duration-300 font-light font-exo">
                     ashok.gaire39@gmail.com
                   </a>
                 </div>
               </div>
               
-              <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 card-hover-subtle">
-                <div className="bg-gray-50 p-3 rounded-lg group-hover:bg-gray-100 transition-all duration-300">
-                  <MapPin className="text-gray-700" size={20} />
+              <div className="group flex items-center gap-4 p-4 rounded-lg card-cosmic">
+                <div className="glass-morphism p-3 rounded-lg group-hover:glow-purple transition-all duration-300">
+                  <MapPin className="text-purple-400" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Location</h4>
-                  <p className="text-gray-600 font-light">Cincinnati, Ohio, USA</p>
+                  <h4 className="font-semibold text-white font-exo">Location</h4>
+                  <p className="text-slate-300 font-light font-exo">Cincinnati, Ohio, USA</p>
                 </div>
               </div>
               
-              <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 card-hover-subtle">
-                <div className="bg-gray-50 p-3 rounded-lg group-hover:bg-gray-100 transition-all duration-300">
-                  <Github className="text-gray-700" size={20} />
+              <div className="group flex items-center gap-4 p-4 rounded-lg card-cosmic">
+                <div className="glass-morphism p-3 rounded-lg group-hover:glow-cyan transition-all duration-300">
+                  <Github className="text-cyan-400" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">GitHub</h4>
-                  <a href="https://github.com/AshIVg" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 animate-underline-expand font-light">
-                    github.com/AshIVg
+                  <h4 className="font-semibold text-white font-exo">GitHub</h4>
+                  <a href="https://github.com/AshokGaire3" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-cyan-400 transition-colors duration-300 font-light font-exo">
+                    github.com/AshokGaire3
                   </a>
                 </div>
               </div>
               
-              <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 card-hover-subtle">
-                <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-all duration-300">
-                  <Linkedin className="text-blue-600" size={20} />
+              <div className="group flex items-center gap-4 p-4 rounded-lg card-cosmic">
+                <div className="glass-morphism p-3 rounded-lg group-hover:glow-blue transition-all duration-300">
+                  <Linkedin className="text-blue-400" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">LinkedIn</h4>
-                  <a href="https://www.linkedin.com/in/ashok-gaire-077562246" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 animate-underline-expand font-light">
+                  <h4 className="font-semibold text-white font-exo">LinkedIn</h4>
+                  <a href="https://www.linkedin.com/in/ashok-gaire-077562246" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-blue-400 transition-colors duration-300 font-light font-exo">
                     Connect with me
                   </a>
                 </div>
@@ -107,17 +109,17 @@ const Contact: React.FC = () => {
           </div>
           
           <div className="animate-slide-in-right">
-            <form onSubmit={handleSubmit} className="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 card-hover-subtle">
+            <form onSubmit={handleSubmit} className="card-cosmic p-8 rounded-lg transition-all duration-300 form-cosmic">
               {isSubmitted ? (
                 <div className="text-center py-8">
-                  <CheckCircle className="text-blue-600 mx-auto mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">Message Sent!</h3>
-                  <p className="text-gray-600 font-light">Thank you for reaching out. I'll get back to you soon!</p>
+                  <CheckCircle className="text-cyan-400 mx-auto mb-4" size={48} />
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight font-orbitron">Message Sent!</h3>
+                  <p className="text-slate-300 font-light font-exo">Thank you for reaching out. I'll get back to you soon!</p>
                 </div>
               ) : (
                 <>
                   <div className="mb-6">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
                       Name
                     </label>
                     <input
@@ -127,13 +129,13 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400"
+                      className="w-full px-4 py-3 rounded-md transition-all duration-300"
                       placeholder="Your Name"
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
                       Email
                     </label>
                     <input
@@ -143,13 +145,13 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400"
+                      className="w-full px-4 py-3 rounded-md transition-all duration-300"
                       placeholder="your.email@example.com"
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
                       Message
                     </label>
                     <textarea
@@ -159,7 +161,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none hover:border-gray-400"
+                      className="w-full px-4 py-3 rounded-md transition-all duration-300 resize-none"
                       placeholder="Tell me about your project or opportunity..."
                     ></textarea>
                   </div>
@@ -167,11 +169,11 @@ const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-all duration-300 flex items-center justify-center gap-2 font-medium shadow-sm hover:shadow-md btn-hover-lift disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="group w-full btn-cosmic-primary py-3 px-6 rounded-md transition-all duration-300 flex items-center justify-center gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed font-exo"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         Sending...
                       </>
                     ) : (

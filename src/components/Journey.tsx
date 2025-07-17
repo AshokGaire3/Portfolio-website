@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, Users, Award, TrendingUp, MapPin, Clock, Building } from 'lucide-react';
+import SectionEffects from './SectionEffects';
 
 const Journey: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -86,27 +87,28 @@ const Journey: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="journey" className="py-20 bg-white relative overflow-hidden">
+    <section ref={sectionRef} id="journey" className="py-20 section-cosmic relative overflow-hidden">
+      <SectionEffects sectionId="journey" effectType="journey" intensity="medium" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Professional Journey</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-purple">Professional Journey</h2>
           <div className="max-w-4xl mx-auto">
-            <p className="text-xl text-gray-600 leading-relaxed mb-6 font-light">
+            <p className="text-xl text-slate-300 leading-relaxed mb-6 font-light font-exo">
               My professional development has been shaped by diverse experiences in academic support, 
               student leadership, and technical collaboration at Northern Kentucky University.
             </p>
             <div className="flex items-center justify-center gap-2 text-gray-500">
               <MapPin size={18} />
-              <span className="font-light">Northern Kentucky University • Cincinnati, Ohio</span>
+              <span className="font-light text-slate-400 font-exo">Northern Kentucky University • Cincinnati, Ohio</span>
             </div>
           </div>
         </div>
 
         {/* Timeline */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Timeline line - visible on all screen sizes */}
-          <div className="absolute left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-px bg-gray-200 h-full z-0"></div>
+          {/* Timeline line - responsive positioning */}
+          <div className="absolute left-6 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 opacity-30"></div>
           
           <div className="space-y-12 lg:space-y-16">
             {experiences.map((experience, index) => (
@@ -118,52 +120,52 @@ const Journey: React.FC = () => {
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-6 lg:left-1/2 lg:transform lg:-translate-x-1/2 w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 group-hover:scale-110 transition-transform duration-300 shadow-sm"></div>
+                <div className="absolute left-6 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-500 border-4 border-slate-900 rounded-full z-10 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/30"></div>
                 
                 {/* Content card */}
-                <div className={`ml-16 lg:ml-0 lg:w-5/12 ${index % 2 === 0 ? 'lg:text-right lg:pr-8' : 'lg:text-left lg:pl-8'}`}>
-                  <div className="bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-100 group-hover:-translate-y-1 transform card-hover-subtle">
+                <div className={`ml-16 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+                  <div className="card-cosmic rounded-lg transition-all duration-300 p-6 group-hover:-translate-y-1 transform">
                     {/* Header */}
-                    <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse lg:text-right' : ''}`}>
-                      <div className={`p-3 rounded-lg transition-colors duration-300 ${
+                    <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? 'md:flex-row-reverse md:text-right' : ''}`}>
+                      <div className={`glass-morphism p-3 rounded-lg transition-colors duration-300 ${
                         experience.color === 'blue' 
-                          ? 'bg-blue-50 group-hover:bg-blue-100' 
-                          : 'bg-gray-100 group-hover:bg-gray-200'
+                          ? 'group-hover:glow-blue' 
+                          : 'group-hover:glow-purple'
                       }`}>
                         <experience.icon className={`${
-                          experience.color === 'blue' ? 'text-blue-600' : 'text-gray-700'
+                          experience.color === 'blue' ? 'text-blue-400' : 'text-purple-400'
                         }`} size={20} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
                           <Clock size={14} className="text-gray-500 flex-shrink-0" />
-                          <span className="text-sm font-medium px-3 py-1 rounded-full bg-white text-gray-700 border border-gray-200">
+                          <span className="text-sm font-medium px-3 py-1 rounded-full glass-morphism text-slate-300 border border-blue-500/20 font-exo">
                             {experience.year}
                           </span>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-1 tracking-tight">{experience.title}</h3>
-                        <p className="text-base font-medium text-gray-700 mb-1">{experience.organization}</p>
-                        <p className="text-sm text-gray-500 font-light mb-2">{experience.type}</p>
+                        <h3 className="text-lg font-bold text-white mb-1 tracking-tight font-exo">{experience.title}</h3>
+                        <p className="text-base font-medium text-slate-300 mb-1 font-exo">{experience.organization}</p>
+                        <p className="text-sm text-slate-400 font-light mb-2 font-exo">{experience.type}</p>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-600 mb-4 leading-relaxed font-light text-sm">
+                    <p className="text-slate-300 mb-4 leading-relaxed font-light text-sm font-exo">
                       {experience.description}
                     </p>
 
                     {/* Key Points */}
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2 font-exo">
                         <div className={`w-2 h-2 rounded-full ${
-                          experience.color === 'blue' ? 'bg-blue-600' : 'bg-gray-600'
+                          experience.color === 'blue' ? 'bg-blue-400' : 'bg-purple-400'
                         }`}></div>
                         Key Contributions
                       </h4>
                       <ul className="space-y-2">
                         {experience.keyPoints.map((point, idx) => (
-                          <li key={idx} className="text-gray-600 leading-relaxed flex items-start gap-2 font-light text-sm">
-                            <span className="w-1 h-1 bg-gray-400 rounded-full mt-2 flex-shrink-0"></span>
+                          <li key={idx} className="text-slate-300 leading-relaxed flex items-start gap-2 font-light text-sm font-exo">
+                            <span className="w-1 h-1 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></span>
                             {point}
                           </li>
                         ))}
@@ -173,7 +175,7 @@ const Journey: React.FC = () => {
                 </div>
 
                 {/* Spacer for opposite side */}
-                <div className="hidden lg:block lg:w-5/12"></div>
+                <div className="hidden md:block md:w-5/12"></div>
               </div>
             ))}
           </div>
@@ -181,9 +183,9 @@ const Journey: React.FC = () => {
 
         {/* Summary Section */}
         <div className="text-center mt-16 animate-fade-in-up">
-          <div className="max-w-4xl mx-auto bg-gray-50 rounded-lg p-8 border border-gray-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Building Tomorrow's Skills Today</h3>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6 font-light">
+          <div className="max-w-4xl mx-auto card-cosmic rounded-lg p-8">
+            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight font-orbitron text-glow-blue">Building Tomorrow's Skills Today</h3>
+            <p className="text-lg text-slate-300 leading-relaxed mb-6 font-light font-exo">
               These experiences have strengthened my communication, leadership, and technical skills while 
               fostering a deep understanding of student success and technology's role in education. 
               Each role has contributed to my growth as a future data scientist and software developer.
@@ -191,13 +193,13 @@ const Journey: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 flex items-center justify-center gap-2 font-medium shadow-sm hover:shadow-md btn-hover-lift"
+                className="btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center justify-center gap-2 font-medium font-exo"
               >
                 View My Projects
               </button>
               <button 
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border border-gray-300 text-gray-700 px-8 py-3 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 font-medium shadow-sm hover:shadow-md btn-hover-lift"
+                className="btn-cosmic px-8 py-3 rounded-md transition-all duration-300 font-medium font-exo"
               >
                 Get In Touch
               </button>
