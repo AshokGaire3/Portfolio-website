@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <SectionEffects sectionId="home" effectType="hero" intensity="high" />
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -68,10 +68,15 @@ const Hero: React.FC = () => {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up animation-delay-1000">
-            <button className="group btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center gap-2 font-medium font-exo">
+            <a
+              href="/Ashok_Gaire_Tech_Resume01.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center gap-2 font-medium font-exo"
+            >
               <Eye size={18} className="group-hover:animate-bounce" />
               <span>View Resume</span>
-            </button>
+            </a>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="group btn-cosmic px-8 py-3 rounded-md transition-all duration-300 font-medium font-exo"

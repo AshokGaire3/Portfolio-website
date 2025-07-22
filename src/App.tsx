@@ -1,6 +1,4 @@
 import React from 'react';
-import GalaxyBackground from './components/GalaxyBackground';
-import GalaxyStarfield from './components/GalaxyStarfield';
 import ScrollProgress from './components/ScrollProgress';
 import SectionTransition from './components/SectionTransition';
 import Header from './components/Header';
@@ -17,39 +15,27 @@ import './index.css';
 function App() {
   return (
     <div className="App">
-      <GalaxyBackground />
-      <GalaxyStarfield density={0.8} speed={0.5} />
-      <ScrollProgress />
+      <div className="animated-gradient-bg" />
       <Header />
-      
-      <SectionTransition>
-        <Hero />
-      </SectionTransition>
-      
+      <Hero />
       <SectionTransition>
         <About />
       </SectionTransition>
-      
       <SectionTransition>
         <Education />
       </SectionTransition>
-      
       <SectionTransition>
         <Skills />
       </SectionTransition>
-      
       <SectionTransition>
         <Journey />
       </SectionTransition>
-      
       <SectionTransition>
         <Projects />
       </SectionTransition>
-      
       <SectionTransition>
         <Contact />
       </SectionTransition>
-      
       <Footer />
     </div>
   );

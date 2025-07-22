@@ -1975,3 +1975,28 @@ html {
     transform: none !important;
   }
 }
+
+.animated-gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(120deg, #0A0A23 0%, #1A0B2E 40%, #2D1B69 80%, #3b82f6 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 16s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

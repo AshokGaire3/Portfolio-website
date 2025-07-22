@@ -136,15 +136,19 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* TODO: Update project links later */}
-                {/* <div className="flex gap-4">
-                  <a
-                    href={project.liveUrl}
-                    className="group/link flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-all duration-300 font-medium font-exo"
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
+                {/* Project Links */}
+                <div className="flex gap-4 mt-4">
+                  {project.liveUrl && project.liveUrl !== '#' && (
+                    <a
+                      href={project.liveUrl}
+                      className="group/link flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-all duration-300 font-medium font-exo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
                   <a
                     href={project.githubUrl}
                     target="_blank"
@@ -154,7 +158,7 @@ const Projects: React.FC = () => {
                     <Github size={16} />
                     Code
                   </a>
-                </div> */}
+                </div>
               </div>
             </div>
           ))}
