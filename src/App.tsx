@@ -15,6 +15,7 @@ import './index.css';
 function App() {
   return (
     <div className="App">
+      <ScrollProgress />
       <div className="animated-gradient-bg" />
       <Header />
       <Hero />
