@@ -10,13 +10,14 @@ import Journey from './components/Journey';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import GalaxyBackground from './components/GalaxyBackground';
 import './index.css';
 
 function App() {
   return (
     <div className="App">
+      <GalaxyBackground />
       <ScrollProgress />
-      <div className="animated-gradient-bg" />
       <Header />
       <Hero />
       <SectionTransition>

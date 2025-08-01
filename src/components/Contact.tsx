@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-20 section-cosmic relative overflow-hidden">
-      <SectionEffects sectionId="contact" effectType="contact" intensity="medium" />
+      <SectionEffects effectType="contact" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-purple">Get In Touch</h2>

@@ -25,7 +25,7 @@ const Education: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="education" className="py-20 section-cosmic relative overflow-hidden">
-      <SectionEffects sectionId="education" effectType="education" intensity="medium" />
+      <SectionEffects effectType="education" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 animate-fade-in-up">

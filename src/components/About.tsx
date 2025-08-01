@@ -5,7 +5,7 @@ import SectionEffects from './SectionEffects';
 const About: React.FC = () => {
   return (
     <section id="about" className="py-20 section-cosmic relative overflow-hidden">
-      <SectionEffects sectionId="about" effectType="about" intensity="medium" />
+      <SectionEffects effectType="about" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-blue">About Me</h2>

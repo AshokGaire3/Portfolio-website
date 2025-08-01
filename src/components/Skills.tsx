@@ -63,7 +63,7 @@ const Skills: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="skills" className="py-20 section-cosmic-alt relative overflow-hidden">
-      <SectionEffects sectionId="skills" effectType="skills" intensity="medium" />
+      <SectionEffects effectType="skills" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-cyan">Skills & Expertise</h2>

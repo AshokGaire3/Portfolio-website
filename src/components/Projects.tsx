@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-20 section-cosmic-alt relative overflow-hidden">
-      <SectionEffects sectionId="projects" effectType="projects" intensity="medium" />
+      <SectionEffects effectType="projects" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-cyan">Featured Projects</h2>

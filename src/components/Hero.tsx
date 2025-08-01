@@ -26,26 +26,26 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      <SectionEffects sectionId="home" effectType="hero" intensity="high" />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 py-20 section-cosmic relative overflow-hidden">
+              <SectionEffects effectType="hero" />
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           {/* Welcome Message */}
           <div className="mb-8 animate-fade-in-up">
-            <p className="text-lg text-slate-400 mb-4 font-light tracking-wide font-exo">
+            <p className="text-lg text-slate-400 mb-4 font-light tracking-wide font-inter">
               Welcome to my website
             </p>
           </div>
           
           {/* Name */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 animate-fade-in-up animation-delay-200 tracking-tight font-orbitron text-glow-blue">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 animate-fade-in-up animation-delay-200 tracking-tight font-heading text-glow-blue">
             Ashok Gaire
           </h1>
           
           {/* Dynamic Title with Smooth Transition */}
           <div className="mb-8 animate-fade-in-up animation-delay-500">
             <div className="text-2xl md:text-3xl text-cyan-400 font-semibold h-12 flex items-center justify-center">
-              <span className="transition-all duration-500 ease-in-out font-exo text-glow-cyan">
+              <span className="transition-all duration-500 ease-in-out font-inter text-glow-cyan">
                 {titles[currentTitleIndex]}
               </span>
               <span className="text-cyan-400 ml-1 font-normal animate-cursor-blink-refined">|</span>
@@ -55,12 +55,12 @@ const Hero: React.FC = () => {
           {/* Location */}
           <div className="flex items-center justify-center gap-2 mb-8 animate-fade-in-up animation-delay-700">
             <MapPin className="text-purple-400" size={18} />
-            <span className="text-slate-300 font-light font-exo">Cincinnati, Ohio, USA</span>
+            <span className="text-slate-300 font-light font-inter">Cincinnati, Ohio, USA</span>
           </div>
           
           {/* Description */}
           <div className="animate-fade-in-up animation-delay-1000">
-            <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light font-exo">
+            <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light font-body">
               Computer Science Student with Data Science Minor, passionate about leveraging technology 
               to solve real-world problems through data-driven insights and innovative software solutions.
             </p>
@@ -72,14 +72,14 @@ const Hero: React.FC = () => {
               href="/Ashok_Gaire_Tech_Resume01.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center gap-2 font-medium font-exo"
+              className="group btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center gap-2 font-medium font-inter"
             >
               <Eye size={18} className="group-hover:animate-bounce" />
               <span>View Resume</span>
             </a>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group btn-cosmic px-8 py-3 rounded-md transition-all duration-300 font-medium font-exo"
+              className="group btn-cosmic px-8 py-3 rounded-md transition-all duration-300 font-medium font-inter"
             >
               <span>Get In Touch</span>
             </button>
