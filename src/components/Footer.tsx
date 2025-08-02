@@ -54,10 +54,10 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-blue-500/20 mt-8 pt-8 text-center">
           <p className="text-slate-400 flex items-center justify-center gap-2 font-light font-exo">
-            Made with <Heart size={16} className="text-red-400" /> by Ashok Gaire © 2024
+            Ashok Gaire © 2025 <br></br>
+            Built with React, TypeScript(JSX) and <Heart size={25} className="text-red-400" />
           </p>
           <p className="text-slate-500 text-sm mt-2 font-light font-exo">
-            Crafted with modern web technologies to showcase technical expertise
           </p>
         </div>
       </div>
