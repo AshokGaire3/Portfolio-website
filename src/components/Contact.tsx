@@ -1,43 +1,174 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle, AlertCircle } from 'lucide-react';
 import SectionEffects from './SectionEffects';
+
+// Type definitions for EmailJS
+declare global {
+  interface Window {
+    emailjs: {
+      init: (publicKey: string) => void;
+      send: (serviceId: string, templateId: string, templateParams: any, publicKey: string) => Promise<{status: number}>;
+    };
+  }
+}
+
+// Type definitions for Vite env
+interface ImportMetaEnv {
+  readonly VITE_EMAILJS_SERVICE_ID: string;
+  readonly VITE_EMAILJS_TEMPLATE_ID: string;
+  readonly VITE_EMAILJS_PUBLIC_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = (import.meta as any).env?.VITE_EMAILJS_SERVICE_ID || 'service_erl2y9l';
+const EMAILJS_TEMPLATE_ID = (import.meta as any).env?.VITE_EMAILJS_TEMPLATE_ID || 'template_oy2enpc';
+const EMAILJS_PUBLIC_KEY = (import.meta as any).env?.VITE_EMAILJS_PUBLIC_KEY || 'rxfKhkFBeHg30Hlyg';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  // Load EmailJS script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.async = true;
+    script.onload = () => {
+      // Initialize EmailJS
+      if (window.emailjs) {
+        window.emailjs.init(EMAILJS_PUBLIC_KEY);
+      }
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+    } else if (formData.subject.trim().length < 5) {
+      newErrors.subject = 'Subject must be at least 5 characters';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError('');
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:ashok.gaire39@gmail.com?subject=${subject}&body=${body}`;
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitted(false);
-    }, 3000);
+    try {
+      // Check if EmailJS is loaded
+      if (!window.emailjs) {
+        throw new Error('Email service not loaded');
+      }
+
+      // Send email using EmailJS
+      const result = await window.emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'ashok.gaire39@gmail.com',
+          to_name: 'Ashok Gaire'
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.status === 200) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError('Failed to send message. Please try again or use the email link below.');
+      
+      // Fallback to mailto if form submission fails
+      const subject = encodeURIComponent(formData.subject);
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      window.open(`mailto:ashok.gaire39@gmail.com?subject=${subject}&body=${body}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    if (!value.trim() && ['name', 'email', 'subject', 'message'].includes(name)) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: `${name.charAt(0).toUpperCase() + name.slice(1)} is required`
+      }));
+    }
   };
 
   return (
@@ -118,9 +249,18 @@ const Contact: React.FC = () => {
                 </div>
               ) : (
                 <>
+                  {submitError && (
+                    <div className="mb-6 p-4 rounded-md bg-red-500/10 border border-red-500/30">
+                      <div className="flex items-center gap-2 text-red-400">
+                        <AlertCircle size={20} />
+                        <span className="font-medium font-exo">{submitError}</span>
+                      </div>
+                    </div>
+                  )}
+                  
                   <div className="mb-6">
                     <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
-                      Name
+                      Name *
                     </label>
                     <input
                       type="text"
@@ -128,15 +268,21 @@ const Contact: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 rounded-md transition-all duration-300"
+                      className={`w-full px-4 py-3 rounded-md transition-all duration-300 ${
+                        errors.name ? 'border-2 border-red-500/50 bg-red-500/10' : ''
+                      }`}
                       placeholder="Your Name"
                     />
+                    {errors.name && (
+                      <p className="text-red-400 text-sm mt-1 font-exo">{errors.name}</p>
+                    )}
                   </div>
                   
                   <div className="mb-6">
                     <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
-                      Email
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -144,26 +290,60 @@ const Contact: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 rounded-md transition-all duration-300"
+                      className={`w-full px-4 py-3 rounded-md transition-all duration-300 ${
+                        errors.email ? 'border-2 border-red-500/50 bg-red-500/10' : ''
+                      }`}
                       placeholder="your.email@example.com"
                     />
+                    {errors.email && (
+                      <p className="text-red-400 text-sm mt-1 font-exo">{errors.email}</p>
+                    )}
+                  </div>
+                  
+                  <div className="mb-6">
+                    <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
+                      Subject *
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required
+                      className={`w-full px-4 py-3 rounded-md transition-all duration-300 ${
+                        errors.subject ? 'border-2 border-red-500/50 bg-red-500/10' : ''
+                      }`}
+                      placeholder="What's this about?"
+                    />
+                    {errors.subject && (
+                      <p className="text-red-400 text-sm mt-1 font-exo">{errors.subject}</p>
+                    )}
                   </div>
                   
                   <div className="mb-6">
                     <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2 font-exo">
-                      Message
+                      Message *
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-md transition-all duration-300 resize-none"
+                      className={`w-full px-4 py-3 rounded-md transition-all duration-300 resize-none ${
+                        errors.message ? 'border-2 border-red-500/50 bg-red-500/10' : ''
+                      }`}
                       placeholder="Tell me about your project or opportunity..."
                     ></textarea>
+                    {errors.message && (
+                      <p className="text-red-400 text-sm mt-1 font-exo">{errors.message}</p>
+                    )}
                   </div>
                   
                   <button
@@ -183,6 +363,10 @@ const Contact: React.FC = () => {
                       </>
                     )}
                   </button>
+                  
+                  <p className="text-xs text-slate-400 mt-4 text-center font-exo">
+                    * Required fields. Your information will be kept confidential.
+                  </p>
                 </>
               )}
             </form>

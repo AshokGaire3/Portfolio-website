@@ -39,19 +39,28 @@ const Projects: React.FC = () => {
       featured: true
     },
     {
+      title: 'Medical Dashboard',
+      description: 'A comprehensive healthcare analytics dashboard built with React 18 and TypeScript, featuring patient management for 30 sample patients, interactive medical metrics visualization using Recharts, and a responsive design with collapsible sidebar. Includes professional medical UI/UX with smooth animations powered by Framer Motion.',
+      technologies: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Recharts', 'React Router', 'Framer Motion'],
+      liveUrl: '#',
+      githubUrl: 'https://github.com/AshokGaire3/medical-dashboard',
+      keySkills: ['Healthcare Analytics', 'Patient Management', 'Interactive Visualizations', 'Responsive Design', 'Medical UI/UX'],
+      featured: false
+    },
+    {
       title: 'Urban Housing Data Integration',
       description: 'Designed and implemented a data integration pipeline to centralize fragmented urban housing market data. Collected, cleaned, and transformed information from APIs, web scraping, and various file types using Python and SQL. This ensured structured, high-quality datasets, significantly improving efficiency and enabling comprehensive analysis for data-driven insights.',
       technologies: ['Python', 'Pandas', 'NumPy', 'SQL', 'APIs', 'Web Scraping'],
       liveUrl: '#',
-      githubUrl: 'https://github.com/AshokGaire3',
+      githubUrl: 'https://github.com/AshokGaire3/Urban-Housing-Data-Integration',
       keySkills: ['Data Collection & Wrangling', 'ETL', 'SQL Integration', 'Data Quality', 'API Interaction']
     },
     {
       title: 'Student Management System',
       description: 'A comprehensive full-stack web application for managing student records with advanced features including enrollment tracking, grade management, and automated report generation. Built with modern web technologies to provide a seamless user experience for educational institutions.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-      liveUrl: '#',
-      githubUrl: 'https://github.com/AshokGaire3',
+      liveUrl: 'https://ashokgaire3.github.io/Student-Management-System/',
+      githubUrl: 'https://github.com/AshokGaire3/Student-Management-System',
       keySkills: ['Full-Stack Development', 'Database Design', 'User Authentication', 'RESTful APIs', 'Educational Technology']
     },
     {
@@ -62,13 +71,21 @@ const Projects: React.FC = () => {
       githubUrl: 'https://github.com/AshokGaire3',
       keySkills: ['Machine Learning', 'Time Series Analysis', 'Neural Networks', 'Financial Modeling', 'Predictive Analytics']
     },
+    // {
+    //   title: 'E-Commerce Analytics Platform',
+    //   description: 'A comprehensive data-driven e-commerce platform featuring real-time analytics, customer behavior tracking, and automated inventory management. Built with modern web technologies and containerized for scalable deployment across different environments.',
+    //   technologies: ['React', 'Python', 'PostgreSQL', 'Docker'],
+    //   liveUrl: '#',
+    //   githubUrl: 'https://github.com/AshokGaire3',
+    //   keySkills: ['Real-Time Analytics', 'Customer Insights', 'Inventory Management', 'Containerization', 'E-Commerce Solutions']
+    // },
     {
-      title: 'E-Commerce Analytics Platform',
-      description: 'A comprehensive data-driven e-commerce platform featuring real-time analytics, customer behavior tracking, and automated inventory management. Built with modern web technologies and containerized for scalable deployment across different environments.',
-      technologies: ['React', 'Python', 'PostgreSQL', 'Docker'],
+      title: 'Expense Tracker',
+      description: 'A web-based simple expense tracker that allows a user to add, view, and delete daily expenses. It provides a visual and interactive way to manage personal finances. The core functionality is handled by JavaScript, while HTML provides the structure and CSS handles the styling.',
+      technologies: ['HTML', 'CSS', 'JavaScript'],
       liveUrl: '#',
-      githubUrl: 'https://github.com/AshokGaire3',
-      keySkills: ['Real-Time Analytics', 'Customer Insights', 'Inventory Management', 'Containerization', 'E-Commerce Solutions']
+      githubUrl: 'https://github.com/AshokGaire3/expense-tracker',
+      keySkills: ['DOM Manipulation', 'Event Handling', 'Local Storage', 'Responsive Design']
     }
   ];
 

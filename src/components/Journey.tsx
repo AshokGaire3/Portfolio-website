@@ -25,37 +25,22 @@ const Journey: React.FC = () => {
 
   const experiences = [
     {
-      year: "2025 – Present",
-      title: "Student Assistant",
-      organization: "First-Year Student Success Hub",
+      year: "January 2023 – Present",
+      title: "Norse IoT Member",
+      organization: "Norse IoT Organization",
       location: "Northern Kentucky University",
-      type: "Academic Support",
-      description: "Supporting first-year students through administrative coordination and student services management.",
+      type: "Technical Collaboration",
+      description: "Participating in hands-on IoT projects and technical skill development.",
       keyPoints: [
-        "Manage front-desk operations and coordinate student appointments using SAP and Navigate systems",
-        "Provide professional communication support for student inquiries via phone and in-person",
-        "Streamline appointment workflows and assist with daily office operations"
+        "Collaborate on Internet of Things projects involving sensors and smart devices",
+        "Engage in technical workshops focused on automation and connected systems",
+        "Develop hardware-software integration skills through practical prototyping"
       ],
-      icon: Users,
-      color: "blue"
-    },
-    {
-      year: "2024 – Present",
-      title: "STEM Peer Mentor",
-      organization: "NKU STEM Program",
-      location: "Northern Kentucky University",
-      type: "Student Leadership",
-      description: "Mentoring first-year STEM students to enhance academic success and campus engagement.",
-      keyPoints: [
-        "Guide students through academic planning and connect them with campus resources",
-        "Facilitate study sessions and provide personalized mentoring strategies",
-        "Support student retention and engagement within the STEM community"
-      ],
-      icon: TrendingUp,
+      icon: Building,
       color: "gray"
     },
     {
-      year: "2023 – Present",
+      year: "November 2023 – Present",
       title: "College of Informatics Ambassador",
       organization: "College of Informatics",
       location: "Northern Kentucky University",
@@ -70,19 +55,49 @@ const Journey: React.FC = () => {
       color: "blue"
     },
     {
-      year: "2023 – Present",
-      title: "Norse IoT Member",
-      organization: "Norse IoT Organization",
+      year: "August 2024 – August 2025",
+      title: "STEM Peer Mentor",
+      organization: "NKU STEM Program",
       location: "Northern Kentucky University",
-      type: "Technical Collaboration",
-      description: "Participating in hands-on IoT projects and technical skill development.",
+      type: "Student Leadership",
+      description: "Mentoring first-year STEM students to enhance academic success and campus engagement.",
       keyPoints: [
-        "Collaborate on Internet of Things projects involving sensors and smart devices",
-        "Engage in technical workshops focused on automation and connected systems",
-        "Develop hardware-software integration skills through practical prototyping"
+        "Guide students through academic planning and connect them with campus resources",
+        "Facilitate study sessions and provide personalized mentoring strategies",
+        "Support student retention and engagement within the STEM community"
       ],
-      icon: Building,
+      icon: TrendingUp,
       color: "gray"
+    },
+    {
+      year: "September 2024 – Present",
+      title: "PLUS Tutor",
+      organization: "Learning PLUS",
+      location: "Northern Kentucky University",
+      type: "Peer-Led Academic Support",
+      description: "Providing one-on-one and small-group peer-led tutoring assistance for mathematics and computer science courses at NKU.",
+      keyPoints: [
+        "Tutor Calculus I/II and computer science courses as a peer tutor with A/A- grades in completed courses",
+        "Deliver personalized learning support through one-on-one and small-group sessions",
+        "Focus on general education and 100-200 level courses with some 300-400 level course assistance"
+      ],
+      icon: Users,
+      color: "purple"
+    },
+    {
+      year: "January 2025 – Present",
+      title: "Student Assistant",
+      organization: "First-Year Student Success Hub",
+      location: "Northern Kentucky University",
+      type: "Academic Support",
+      description: "Supporting first-year students through administrative coordination and student services management.",
+      keyPoints: [
+        "Manage front-desk operations and coordinate student appointments using SAP and Navigate systems",
+        "Provide professional communication support for student inquiries via phone and in-person",
+        "Streamline appointment workflows and assist with daily office operations"
+      ],
+      icon: Users,
+      color: "blue"
     }
   ];
 
