@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, CheckCircle } from 'lucide-react';
 import SectionEffects from './SectionEffects';
 
 const Projects: React.FC = () => {
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const observers = projectRefs.current.map((ref, index) => {
@@ -31,17 +32,17 @@ const Projects: React.FC = () => {
   const projects = [
     {
       title: 'Sales Insights Dashboard',
-      description: 'A dynamic dashboard analyzing sales performance and regional trends using mock real estate data. Built with SQL for data extraction and transformation, Power BI for interactive visualizations with slicers, drilldowns, and KPIs. Delivers actionable insights on pricing patterns, customer preferences, and monthly revenue breakdowns.',
+      description: 'The Sales Insights Dashboard provides a clear, interactive view of sales performance across products, regions, and time. Built in Power BI with Power Query for data shaping and DAX for advanced measures, it tracks KPIs like revenue, profit margin, average order value, and YoY growth. Users can drill through, slice by date or region, and explore trends to pinpoint underperforming segments and growth opportunities. ',
       technologies: ['SQL', 'Power BI', 'Excel', 'Data Analysis'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AshokGaire3',
-      keySkills: ['Data Visualization', 'Business Intelligence', 'KPI Development', 'Interactive Dashboards', 'Sales Analytics'],
-      featured: true
+      keySkills: ['Data Visualization', 'Interactive Dashboards', 'Sales Analytics'],
+      featured: false
     },
     {
       title: 'Medical Dashboard',
-      description: 'A comprehensive healthcare analytics dashboard built with React 18 and TypeScript, featuring patient management for 30 sample patients, interactive medical metrics visualization using Recharts, and a responsive design with collapsible sidebar. Includes professional medical UI/UX with smooth animations powered by Framer Motion.',
-      technologies: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Recharts', 'React Router', 'Framer Motion'],
+      description: 'A comprehensive healthcare analytics dashboard built with React Native and Django, featuring patient management for 30 sample patients, interactive medical metrics visualization using Recharts, and a responsive design with collapsible sidebar. Includes professional medical UI/UX with smooth animations powered by Framer Motion.',
+      technologies: ['React Native', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Django', 'PostgreSQL'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AshokGaire3/medical-dashboard',
       keySkills: ['Healthcare Analytics', 'Patient Management', 'Interactive Visualizations', 'Responsive Design', 'Medical UI/UX'],
@@ -58,7 +59,7 @@ const Projects: React.FC = () => {
     {
       title: 'Student Management System',
       description: 'A comprehensive full-stack web application for managing student records with advanced features including enrollment tracking, grade management, and automated report generation. Built with modern web technologies to provide a seamless user experience for educational institutions.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
+      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Rest API'],
       liveUrl: 'https://ashokgaire3.github.io/Student-Management-System/',
       githubUrl: 'https://github.com/AshokGaire3/Student-Management-System',
       keySkills: ['Full-Stack Development', 'Database Design', 'User Authentication', 'RESTful APIs', 'Educational Technology']
@@ -66,7 +67,7 @@ const Projects: React.FC = () => {
     {
       title: 'Stock Price Predictor',
       description: 'An advanced machine learning model that predicts stock prices using historical data, technical indicators, and LSTM neural networks for time series forecasting. Features real-time data processing and interactive visualizations to help users make informed investment decisions.',
-      technologies: ['Python', 'TensorFlow', 'NumPy', 'Matplotlib'],
+      technologies: ['Python', 'TensorFlow', 'Pandas', 'Scikit-learn', 'Matplotlib'],
       liveUrl: '#',
       githubUrl: 'https://github.com/AshokGaire3',
       keySkills: ['Machine Learning', 'Time Series Analysis', 'Neural Networks', 'Financial Modeling', 'Predictive Analytics']
@@ -89,6 +90,73 @@ const Projects: React.FC = () => {
     }
   ];
 
+  // Helpers
+  const getShortDescription = (text: string, maxChars = 180) => {
+    if (!text) return '';
+    if (text.length <= maxChars) return text.trim();
+    const cut = text.slice(0, maxChars);
+    const lastPeriod = cut.lastIndexOf('.');
+    const safeCut = lastPeriod > 80 ? cut.slice(0, lastPeriod + 1) : cut;
+    return safeCut.trim() + (safeCut.endsWith('.') ? '' : '...');
+  };
+
+  const getCategories = (technologies: string[]) => {
+    const tech = technologies.map(t => t.toLowerCase());
+    const categories: { name: string; score: number }[] = [];
+
+    const hasAny = (keys: string[]) => tech.some(t => keys.some(k => t.includes(k)));
+
+    if (hasAny(['tensorflow', 'pytorch', 'lstm', 'scikit-learn', 'ml', 'machine'])) {
+      categories.push({ name: 'Machine learning', score: 5 });
+    }
+    if (hasAny(['spark', 'airflow', 'dbt', 'pipeline', 'etl', 'snowflake', 'bigquery'])) {
+      categories.push({ name: 'Data Engineering', score: 4 });
+    }
+    if (hasAny(['power bi', 'excel', 'tableau', 'bi', 'dax'])) {
+      categories.push({ name: 'Data Analyst', score: 4 });
+    }
+    if (hasAny(['react native'])) {
+      categories.push({ name: 'Web development', score: 3 });
+    }
+    if (hasAny(['react', 'node', 'express', 'django', 'flask', 'mongo', 'postgres', 'typescript', 'javascript'])) {
+      categories.push({ name: 'Web development', score: 3 });
+    }
+    if (hasAny(['css', 'tailwind', 'ui', 'ux', 'design'])) {
+      categories.push({ name: 'Web design', score: 2 });
+    }
+    if (hasAny(['ai', 'llm'])) {
+      categories.push({ name: 'AI', score: 1 });
+    }
+
+    // Deduplicate by name and sort by score desc, then pick top 2
+    const unique = Array.from(new Map(categories.map(c => [c.name, c])).values())
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 2)
+      .map(c => c.name);
+
+    if (unique.length === 0) return ['Web development'];
+    return unique;
+  };
+
+  const categoryStyle = (category: string) => {
+    switch (category) {
+      case 'Machine learning':
+        return { badge: 'text-emerald-300 border-emerald-500/40', header: 'from-emerald-500/15 via-cyan-500/10 to-blue-500/10' };
+      case 'Data Engineering':
+        return { badge: 'text-cyan-300 border-cyan-500/40', header: 'from-cyan-500/15 via-blue-500/10 to-purple-500/10' };
+      case 'Data Analyst':
+        return { badge: 'text-sky-300 border-sky-500/40', header: 'from-sky-500/15 via-cyan-500/10 to-indigo-500/10' };
+      case 'Web development':
+        return { badge: 'text-blue-300 border-blue-500/40', header: 'from-blue-500/15 via-cyan-500/10 to-indigo-500/10' };
+      case 'Web design':
+        return { badge: 'text-purple-300 border-purple-500/40', header: 'from-purple-500/15 via-pink-500/10 to-blue-500/10' };
+      case 'AI':
+        return { badge: 'text-fuchsia-300 border-fuchsia-500/40', header: 'from-fuchsia-500/15 via-purple-500/10 to-blue-500/10' };
+      default:
+        return { badge: 'text-slate-300 border-slate-500/40', header: 'from-slate-500/10 via-slate-400/10 to-slate-500/10' };
+    }
+  };
+
   return (
     <section id="projects" className="py-20 section-cosmic-alt relative overflow-hidden">
       <SectionEffects effectType="projects" />
@@ -101,11 +169,15 @@ const Projects: React.FC = () => {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            const categories = getCategories(project.technologies);
+            const headerStyles = categoryStyle(categories[0]);
+            const isExpanded = !!expandedCards[index];
+            return (
             <div 
               key={project.title}
               ref={el => projectRefs.current[index] = el}
-              className={`group card-cosmic rounded-lg transition-all duration-500 overflow-hidden relative ${
+              className={`group card-cosmic rounded-xl transition-all duration-500 overflow-hidden relative ${
                 visibleProjects.includes(index) ? 'animate-slide-up' : 'opacity-0'
               }`}
               style={{ animationDelay: `${index * 150}ms` }}
@@ -115,50 +187,63 @@ const Projects: React.FC = () => {
                   Featured Project
                 </div>
               )}
-              
-              <div className={`p-6 ${project.featured ? 'pt-14' : ''}`}>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300 tracking-tight font-orbitron">
+
+              <div className={`p-6`}>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {categories.map(cat => {
+                    const style = categoryStyle(cat);
+                    return (
+                      <span key={cat} className={`px-2 py-0.5 rounded-full text-[11px] font-medium border ${style.badge} bg-black/20 backdrop-blur-sm font-exo`}>{cat}</span>
+                    );
+                  })}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300 tracking-tight font-orbitron">
                   {project.title}
                 </h3>
-                <p className="text-slate-300 mb-4 leading-relaxed text-sm font-light font-exo">
-                  {project.description}
-                </p>
-                
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
+                  {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full text-xs font-medium glass-morphism text-slate-300 hover:glow-blue transition-colors duration-200 font-exo"
+                      className="px-3 py-1 rounded-full text-xs font-medium glass-morphism text-slate-200 border border-slate-600/40 font-exo"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Key Skills section */}
-                <div className="mb-6">
+                <p className="text-slate-300 mb-3 leading-relaxed text-[15px] font-light font-exo">
+                  {isExpanded ? project.description.trim() : getShortDescription(project.description)}
+                </p>
+                {project.description.length > 200 && (
+                  <button
+                    className="text-blue-300 hover:text-white text-sm font-medium font-exo"
+                    onClick={() => setExpandedCards(prev => ({ ...prev, [index]: !prev[index] }))}
+                  >
+                    {isExpanded ? 'Show less' : 'Show more'}
+                  </button>
+                )}
+
+                <div className="mb-5">
                   <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2 font-exo">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                    Key Skills
+                    Highlights
                   </h4>
-                  <div className="flex flex-wrap gap-1">
-                    {project.keySkills.map((skill, skillIndex) => (
-                      <span
-                        key={skill}
-                        className="px-2 py-1 rounded text-xs font-medium glass-morphism text-cyan-400 border border-cyan-500/30 font-exo"
-                      >
-                        {skill}
-                      </span>
+                  <ul className="space-y-1.5">
+                    {project.keySkills.slice(0, 3).map((skill) => (
+                      <li key={skill} className="flex items-center gap-2 text-[13px] text-slate-300 font-exo">
+                        <CheckCircle size={14} className="text-cyan-400" />
+                        <span>{skill}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-                
+
                 {/* Project Links */}
-                <div className="flex gap-4 mt-4">
+                <div className="flex gap-3 mt-2">
                   {project.liveUrl && project.liveUrl !== '#' && (
                     <a
                       href={project.liveUrl}
-                      className="group/link flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-all duration-300 font-medium font-exo"
+                      className="group/link inline-flex items-center gap-2 text-blue-300 hover:text-white transition-all duration-300 font-medium font-exo px-3 py-2 rounded-md bg-blue-500/10 border border-blue-500/30"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -170,7 +255,7 @@ const Projects: React.FC = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-all duration-300 font-medium font-exo"
+                    className="group/link inline-flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium font-exo px-3 py-2 rounded-md bg-slate-500/10 border border-slate-500/30"
                   >
                     <Github size={16} />
                     Code
@@ -178,7 +263,7 @@ const Projects: React.FC = () => {
                 </div>
               </div>
             </div>
-          ))}
+          );})}
         </div>
         
         {/* Call to action */}

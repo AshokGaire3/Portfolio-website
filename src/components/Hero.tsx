@@ -61,15 +61,15 @@ const Hero: React.FC = () => {
           {/* Description */}
           <div className="animate-fade-in-up animation-delay-1000">
             <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light font-body">
-              Computer Science Student with Data Science Minor, passionate about leveraging technology 
-              to solve real-world problems through data-driven insights and innovative software solutions.
+              Computer Science student with Data Science and Mathematics minor, I turn messy data into clear decisions and build
+              fast, user‑friendly software that solves real problems.
             </p>
           </div>
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up animation-delay-1000">
             <a
-              href="/Ashok_Gaire_Tech_Resume01.pdf"
+              href="/AshokResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="group btn-cosmic-primary px-8 py-3 rounded-md transition-all duration-300 flex items-center gap-2 font-medium font-inter"
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
               </div>
             </a>
             <a 
-              href="mailto:ashok.gaire39@gmail.com"
+              href="mailto:gairashok79@gmail.com"
               className="group text-slate-400 hover:text-cyan-400 transition-all duration-300"
             >
               <div className="p-3 rounded-md glass-morphism group-hover:glow-cyan transition-all duration-300">

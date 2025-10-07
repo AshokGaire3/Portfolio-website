@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             <h3 className="text-2xl font-bold mb-2 tracking-tight">
               <span className="font-orbitron text-glow-blue">Ashok Gaire</span>
             </h3>
-            <p className="text-slate-300 mb-2 font-light font-exo">Computer Science Student | Data Analyst | Full Stack Developer</p>
+            <p className="text-slate-300 mb-2 font-light font-exo">Computer Science Student | Data Enthusiast | Creative Developer</p>
             <div className="flex items-center justify-center md:justify-start gap-2 text-slate-400">
               <MapPin size={16} />
               <span className="text-sm font-light font-exo">Cincinnati, Ohio, USA</span>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
               </div>
             </a>
             <a
-              href="mailto:ashok.gaire39@gmail.com"
+              href="mailto:gaireashok79@gmail.com"
               className="group text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110"
               aria-label="Email"
             >

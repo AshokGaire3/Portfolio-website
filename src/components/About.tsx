@@ -10,8 +10,8 @@ const About: React.FC = () => {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight font-orbitron text-glow-blue">About Me</h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light font-exo">
-            I'm a dedicated Computer Science student with a minor in Data Science, passionate about 
-            leveraging technology to solve real-world problems through data-driven insights and innovative software solutions.
+            I specialize in turning data into action and ideas into products—combining analytics,
+            ML, and modern web development to deliver measurable impact.
           </p>
         </div>
         
@@ -21,9 +21,8 @@ const About: React.FC = () => {
               Building Tomorrow's Solutions Today
             </h3>
             <p className="text-slate-300 mb-8 leading-relaxed text-lg font-light font-exo">
-              As a Computer Science student with a Data Science minor, I combine analytical thinking 
-              with technical expertise to create impactful solutions. My journey spans from data analysis 
-              and machine learning to full-stack development, always focusing on delivering value through technology.
+              I love shipping useful things. From dashboards to end‑to‑end apps, I focus on clarity,
+              performance, and user experience—using the right tools to solve the right problems.
             </p>
           </div>
           
